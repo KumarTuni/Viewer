@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+   <!-- <item
+        android:id="@+id/prnt"
+        android:title="Print"
+        android:showAsAction="always"
+        />-->
+   <!-- <item
+        android:id="@+id/email"
+        android:title="Email"
+        android:showAsAction="always"
+        />-->
+    <item
+        android:id="@+id/email"
+        android:title="Close"
+        android:icon="@drawable/ic_cancel"
+        android:showAsAction="always"
+        />
+
+</menu>
