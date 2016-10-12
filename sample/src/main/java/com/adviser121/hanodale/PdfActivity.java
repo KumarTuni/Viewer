@@ -3,11 +3,13 @@ package com.adviser121.hanodale;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.tekinarslan.sample.R;
 
@@ -32,6 +34,8 @@ public class PdfActivity extends Activity {
             fragment.setArguments(args);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        }else{
+            Toast.makeText(getApplicationContext(),"Something Went Wrong",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -48,32 +52,40 @@ public class PdfActivity extends Activity {
             case R.id.email:
                 // write your code here
 
-                onBackPressed();
-
-               /* try {
-                    Intent shareIntent = new Intent(Intent.ACTION_SENDTO);
-                    shareIntent.setType("application/pdf");
-                    shareIntent.setData(Uri.parse("mailto:"));
-                    shareIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{""});
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "");
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, "");
-                    shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + path));
-                    if (shareIntent.resolveActivity(getPackageManager()) != null) {
-                        startActivity(shareIntent);
+                if(path != null) {
+                    try {
+                        Intent shareIntent = new Intent(Intent.ACTION_SENDTO);
+                        shareIntent.setType("application/pdf");
+                        shareIntent.setData(Uri.parse("mailto:"));
+                        shareIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{""});
+                        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "");
+                        shareIntent.putExtra(Intent.EXTRA_TEXT, "");
+                        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + path));
+                        if (shareIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(shareIntent);
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "No Apps To Send PDF", Toast.LENGTH_SHORT).show();
                     }
-                }catch (Exception e){
-                    Toast.makeText(getApplicationContext(),"No Apps To Send PDF",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"You Don't Have PDF",Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.prnt:
 
-                file_name=path.substring(path.lastIndexOf("/")+1);
-                Intent printIntent = new Intent(this, PrintDialogActivity.class);
-                printIntent.setDataAndType(Uri.parse("file://" + path), "application/pdf");
-                printIntent.putExtra("title",file_name);
-                startActivity(printIntent);
-                return true;*/
-
+                if (path != null) {
+                    file_name = path.substring(path.lastIndexOf("/") + 1);
+                    Intent printIntent = new Intent(this, PrintDialogActivity.class);
+                    printIntent.setDataAndType(Uri.parse("file://" + path), "application/pdf");
+                    printIntent.putExtra("title", file_name);
+                    startActivity(printIntent);
+                }else {
+                    Toast.makeText(getApplicationContext(),"You Don't Have PDF",Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            case R.id.close:
+                onBackPressed();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
