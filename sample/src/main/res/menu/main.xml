@@ -3,7 +3,7 @@
     <item
         android:id="@+id/prnt"
         android:title="Print"
-        android:icon="@drawable/ic_print"
+        android:icon="@drawable/ic_printing"
         android:showAsAction="always"
         />
     <item

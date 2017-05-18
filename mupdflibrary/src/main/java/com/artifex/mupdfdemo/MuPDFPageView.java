@@ -197,8 +197,8 @@ public class MuPDFPageView extends PageView implements MuPDFView {
         mSelectedAnnotationIndex = -1;
         setItemSelectBox(null);
 
-        if (!MuPDFCore.javascriptSupported())
-            return Hit.NOTHING;
+        /*if (!MuPDFCore.javascriptSupported())
+            return Hit.NOTHING;*/
 
         if (mWidgetAreas != null) {
             for (i = 0; i < mWidgetAreas.length && !hit; i++)

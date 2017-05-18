@@ -1,8 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        Rohin {
+            keyAlias 'Rohin'
+            keyPassword 'Rohin@123'
+            storePassword 'Rohin'
+            storeFile file('C:/Users/Rohin/.android/debug.keystore')
+        }
+    }
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId 'com.adviser121.hanodale'
         minSdkVersion 14

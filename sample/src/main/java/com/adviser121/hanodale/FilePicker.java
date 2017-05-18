@@ -36,10 +36,11 @@ public class FilePicker extends ListActivity {
     protected FilePickerListAdapter Adapter;
     protected boolean ShowHiddenFiles = false;
     protected String[] acceptedFileExtensions;
-
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 118;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
 
         LayoutInflater inflator = (LayoutInflater)
@@ -129,10 +130,14 @@ public class FilePicker extends ListActivity {
 
         if(newFile.isFile()) {
 
-            Intent extra = new Intent();
+            Intent ine=new Intent(FilePicker.this,PdfActivity.class);
+            ine.putExtra("filepath",newFile.getAbsolutePath());
+            startActivity(ine);
+
+            /*Intent extra = new Intent();
             extra.putExtra(EXTRA_FILE_PATH, newFile.getAbsolutePath());
             setResult(RESULT_OK, extra);
-            finish();
+            finish();*/
         }
         else {
 

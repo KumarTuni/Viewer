@@ -24,7 +24,13 @@
         </activity>
         <activity android:name="com.adviser121.hanodale.FilePicker"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            ></activity>
+            >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <!--<activity android:name="com.adviser121.hanodale.PdfActivity"
             android:configChanges="screenSize|orientation">
             <intent-filter>
